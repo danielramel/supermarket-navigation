@@ -146,28 +146,8 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
           color: Colors.white,
         );
       case 'the item is on your left':
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            const Icon(
-              Icons.place,
-              size: mainSize,
-              color: Colors.white,
-            ),
-            Positioned(
-              left: 16,
-              child: Transform.rotate(
-                angle: 0, // keep arrow pointing left
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  size: badgeSize,
-                  color: Colors.white70,
-                ),
-              ),
-            ),
-          ],
-        );
       case 'the item is on your right':
+        // Use the same map-pin widget for both left/right item commands.
         return Stack(
           alignment: Alignment.center,
           children: [
@@ -176,14 +156,22 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
               size: mainSize,
               color: Colors.white,
             ),
+            // subtle circular badge below the pin to indicate 'destination'
             Positioned(
-              right: 16,
-              child: Transform.rotate(
-                angle: 0,
-                child: const Icon(
-                  Icons.arrow_forward_ios,
-                  size: badgeSize,
-                  color: Colors.white70,
+              bottom: 14,
+              child: Container(
+                width: badgeSize,
+                height: badgeSize,
+                decoration: BoxDecoration(
+                  color: Colors.white24,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.location_on,
+                    size: 18,
+                    color: Colors.white70,
+                  ),
                 ),
               ),
             ),
