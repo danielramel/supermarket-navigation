@@ -119,7 +119,6 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
 
   Widget _iconForCommand(String cmd) {
     const double mainSize = 120;
-    const double badgeSize = 40;
     switch (cmd) {
       case 'go forward':
         return const Icon(
@@ -155,25 +154,6 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
               Icons.place,
               size: mainSize,
               color: Colors.white,
-            ),
-            // subtle circular badge below the pin to indicate 'destination'
-            Positioned(
-              bottom: 14,
-              child: Container(
-                width: badgeSize,
-                height: badgeSize,
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.location_on,
-                    size: 18,
-                    color: Colors.white70,
-                  ),
-                ),
-              ),
             ),
           ],
         );
