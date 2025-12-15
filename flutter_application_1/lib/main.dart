@@ -3,10 +3,11 @@ import 'package:flutter_application_1/widgets/bottom_hamburger_menu.dart';
 import 'package:flutter_application_1/pages/settings_page.dart';
 import 'package:flutter_application_1/pages/shopping_list_page.dart';
 import 'package:flutter_application_1/pages/navigation_menu_page.dart';
+import 'package:flutter_application_1/pages/map_navigation_page.dart';
 
 void main() {
   runApp(const MyApp());
-}
+} 
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -38,12 +39,14 @@ class _HomePageState extends State<HomePage> {
     SettingsPage(),
     ShoppingListPage(),
     NavigationMenuPage(),
+    MapNavigationPage(),
   ];
 
   static const List<String> _titles = <String>[
     'Settings',
     'Shopping List',
-    'Navigation',
+    'Icon Navigation',
+    'Map Navigation',
   ];
 
   @override
