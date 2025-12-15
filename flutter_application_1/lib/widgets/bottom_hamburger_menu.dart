@@ -20,20 +20,20 @@ class BottomNavigationBarWidget extends StatelessWidget {
       onTap: onTap,
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt),
-          label: 'Shopping',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.navigation),
-          label: 'Navigate',
+          label: 'Icon Nav 1',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map_outlined),
-          label: 'Map',
+          label: 'Map Nav 1',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.navigation),
+          label: 'Icon Nav 2',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map_outlined),
+          label: 'Map Nav 2',
         ),
       ],
     );

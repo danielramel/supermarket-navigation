@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/bottom_hamburger_menu.dart';
-import 'package:flutter_application_1/pages/settings_page.dart';
-import 'package:flutter_application_1/pages/shopping_list_page.dart';
 import 'package:flutter_application_1/pages/navigation_menu_page.dart';
 import 'package:flutter_application_1/pages/map_navigation_page.dart';
 
@@ -36,17 +34,17 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   static const List<Widget> _pages = <Widget>[
-    SettingsPage(),
-    ShoppingListPage(),
+    NavigationMenuPage(),
+    MapNavigationPage(),
     NavigationMenuPage(),
     MapNavigationPage(),
   ];
 
   static const List<String> _titles = <String>[
-    'Settings',
-    'Shopping List',
-    'Icon Navigation',
-    'Map Navigation',
+    'Icon Navigation 1',
+    'Map Navigation 1',
+    'Icon Navigation 2',
+    'Map Navigation 2',
   ];
 
   @override
