@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class NavigationMenuPage extends StatefulWidget {
@@ -12,27 +10,28 @@ class NavigationMenuPage extends StatefulWidget {
 class _NavigationMenuPageState extends State<NavigationMenuPage> {
   final PageController _pageController = PageController();
   final Map<int, String> _words = {}; // cache generated words per page index
-  final Map<int, int> _distances = {}; // cache generated distances per page index
-  final Random _random = Random();
+  // distances removed: not used anymore
 
-  // Fixed set of navigation commands to show on each page.
-  static const List<String> _commands = [
-    'go forward',
-    'go left',
-    'go right',
-    'turn around',
-    'the item is on your left',
-    'the item is on your right',
+  // Command map based on numeric IDs.
+  // 1: forward, 2: left, 3: right, 4: turn around, 5: item left, 6: item right
+  static const Map<int, String> _commandMap = {
+    1: 'go forward',
+    2: 'go left',
+    3: 'go right',
+    4: 'turn around',
+    5: 'the item is on your left',
+    6: 'the item is on your right',
+  };
+
+  // Fixed path sequence to always follow.
+  static const List<int> _path = [
+    1, 4, 2, 3, 5, 3, 5, 3, 5, 2, 1, 3, 4, 2, 4, 3, 1, 2, 1, 1, 1, 3, 4,
   ];
 
   String _commandForIndex(int index) {
-    // Choose a command deterministically based on a pseudo-random choice but cache per index.
-    return _commands[_random.nextInt(_commands.length)];
-  }
-
-  int _distanceForIndex(int index) {
-    // Return cached distance or generate a random 1..50 steps value
-    return _distances.putIfAbsent(index, () => _random.nextInt(50) + 1);
+    // Always select command from the fixed path sequence.
+    final id = _path[index % _path.length];
+    return _commandMap[id] ?? 'go forward';
   }
 
   @override
@@ -45,10 +44,11 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        // PageView.builder without itemCount produces an effectively infinite scroll
+        // Limit pages to the fixed path length to prevent overscroll beyond the end
         child: PageView.builder(
           controller: _pageController,
           scrollDirection: Axis.vertical,
+          itemCount: _path.length,
           itemBuilder: (context, index) {
             final word = _words.putIfAbsent(index, () => _commandForIndex(index));
             final color = Colors.primaries[index % Colors.primaries.length].shade400;
@@ -75,18 +75,7 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        // distance line e.g. "in 15 steps"
-                        Builder(builder: (ctx) {
-                          final dist = _distanceForIndex(index);
-                          final unit = dist == 1 ? 'step' : 'steps';
-                          return Text(
-                            'in $dist $unit',
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white70,
-                            ),
-                          );
-                        }),
+                        // distance removed; command is shown without steps
                       ],
                     ),
                   ),
