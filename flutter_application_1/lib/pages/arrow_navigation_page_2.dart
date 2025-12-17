@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NavigationMenuPage extends StatefulWidget {
-  const NavigationMenuPage({super.key});
+class ArrowNavigationPage2 extends StatefulWidget {
+  const ArrowNavigationPage2({super.key});
 
   @override
-  State<NavigationMenuPage> createState() => _NavigationMenuPageState();
+  State<ArrowNavigationPage2> createState() => _ArrowNavigationPage2State();
 }
 
-class _NavigationMenuPageState extends State<NavigationMenuPage> {
+class _ArrowNavigationPage2State extends State<ArrowNavigationPage2> {
   final PageController _pageController = PageController();
   final Map<int, String> _words = {}; // cache generated words per page index
   // distances removed: not used anymore
@@ -25,7 +25,7 @@ class _NavigationMenuPageState extends State<NavigationMenuPage> {
 
   // Fixed path sequence to always follow.
   static const List<int> _path = [
-    1, 4, 2, 3, 5, 3, 5, 3, 5, 2, 1, 3, 4, 2, 4, 3, 1, 2, 1, 1, 1, 3, 4,
+    3, 1, 1, 5, 1, 2, 6, 1, 2, 1, 6, 1, 3, 6, 2
   ];
 
   String _commandForIndex(int index) {
