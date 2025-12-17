@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 /// Empty placeholder for the Map Navigation menu/page.
-class MapNavigationPage extends StatelessWidget {
-  const MapNavigationPage({super.key});
+class MapNavigationPage2 extends StatelessWidget {
+  const MapNavigationPage2({super.key});
 
   static const List<String> _imagePaths = [
-    'assets/1_1.png',
-    'assets/1_2.png',
-    'assets/1_3.png',
-    'assets/1_4.png',
-    'assets/1_5.png',
+    'assets/2_1.png',
+    'assets/2_2.png',
+    'assets/2_3.png',
+    'assets/2_4.png',
+    'assets/2_5.png',
   ];
 
   @override

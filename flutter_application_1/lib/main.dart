@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/bottom_hamburger_menu.dart';
 import 'package:flutter_application_1/pages/navigation_menu_page.dart';
 import 'package:flutter_application_1/pages/map_navigation_page.dart';
+import 'package:flutter_application_1/pages/map_navigation_page_2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     NavigationMenuPage(),
     MapNavigationPage(),
     NavigationMenuPage(),
-    MapNavigationPage(),
+    MapNavigationPage2(),
   ];
 
   static const List<String> _titles = <String>[
