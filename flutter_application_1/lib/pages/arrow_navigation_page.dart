@@ -18,6 +18,7 @@ class _ArrowNavigationPageState extends State<ArrowNavigationPage> {
     4: 'turn around',
     5: 'the item is on your left',
     6: 'the item is on your right',
+    7: 'go to cassa',
   };
 
   static const List<String> _items = [
@@ -29,7 +30,7 @@ class _ArrowNavigationPageState extends State<ArrowNavigationPage> {
   ];
 
   static const List<int> _path = [
-    1, 3, 6, 1, 1, 1, 6, 2, 2, 5, 4, 1, 2, 6, 2, 
+    1, 3, 6, 1, 1, 1, 6, 2, 2, 5, 4, 1, 2, 6, 2, 7,
   ];
 
   int _itemIndex = 0;
@@ -124,6 +125,8 @@ class _ArrowNavigationPageState extends State<ArrowNavigationPage> {
       return const Icon(Icons.arrow_forward, size: mainSize, color: Colors.white);
     } else if (cmd.startsWith('turn around')) {
       return const Icon(Icons.rotate_left, size: mainSize, color: Colors.white);
+    } else if (cmd.startsWith('go to cassa')) {
+      return const Icon(Icons.shopping_cart, size: mainSize, color: Colors.white);
     } else if (cmd.contains('is on your')) {
       return const Icon(Icons.place, size: mainSize, color: Colors.white);
     }
