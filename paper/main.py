@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-# Make figures more colorful and readable
 plt.style.use('seaborn-v0_8-darkgrid')
 palette = plt.get_cmap('tab10').colors
 
@@ -32,7 +31,6 @@ def _overlay_jitter(ax, groups, positions, colors, jitter=0.08):
         )
 
 def plot_difficulty_boxplot(arrow_difficulty, map_difficulty, reports_dir='reports'):
-    """Plot difficulty comparison boxplot and save to reports_dir."""
     os.makedirs(reports_dir, exist_ok=True)
     fig, ax = plt.subplots()
     bplot = ax.boxplot(
@@ -59,7 +57,6 @@ def plot_difficulty_boxplot(arrow_difficulty, map_difficulty, reports_dir='repor
 
 
 def plot_understanding_boxplot(arrow_understand, map_understand, reports_dir='reports'):
-    """Plot understanding comparison boxplot and save to reports_dir."""
     os.makedirs(reports_dir, exist_ok=True)
     fig, ax = plt.subplots()
     bplot = ax.boxplot(
@@ -86,7 +83,6 @@ def plot_understanding_boxplot(arrow_understand, map_understand, reports_dir='re
 
 
 def plot_tlx_comparison(combined, labels, reports_dir='reports'):
-    """Plot TLX comparison bars with jitter and save to reports_dir."""
     os.makedirs(reports_dir, exist_ok=True)
     count = len(combined)
     arrow_scores = {}
@@ -102,7 +98,6 @@ def plot_tlx_comparison(combined, labels, reports_dir='reports'):
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.bar(x - width/2, list(arrow_scores.values()), width, label='Arrow TLX', color=palette[4], alpha=0.7)
     ax.bar(x + width/2, list(map_scores.values()), width, label='Map TLX', color=palette[5], alpha=0.7)
-    # Overlay per-participant jitter points for each TLX dimension
     for i, label in enumerate(labels):
         arrow_label_vals = [int(combined[k]['arrow_'+label]) for k in combined]
         map_label_vals   = [int(combined[k]['map_'+label])   for k in combined]
@@ -123,7 +118,6 @@ def plot_tlx_comparison(combined, labels, reports_dir='reports'):
 
 
 def plot_summary_understanding_difficulty(arrow_understand, map_understand, arrow_difficulty, map_difficulty, reports_dir='reports'):
-    """Plot summary bars for understanding vs difficulty and save to reports_dir."""
     os.makedirs(reports_dir, exist_ok=True)
     avg_arrow_understand = np.mean(arrow_understand) if arrow_understand else 0
     avg_map_understand = np.mean(map_understand) if map_understand else 0
@@ -162,7 +156,6 @@ def plot_summary_understanding_difficulty(arrow_understand, map_understand, arro
 
 
 def plot_task_results(map1_results, map2_results, arrow1_results, arrow2_results, reports_dir='reports'):
-    """Plot boxplots for map1/map2/arrow1/arrow2 results and save to reports_dir."""
     os.makedirs(reports_dir, exist_ok=True)
     fig, ax = plt.subplots(figsize=(10, 6))
     groups = [map1_results, map2_results, arrow1_results, arrow2_results]
@@ -189,11 +182,7 @@ def plot_task_results(map1_results, map2_results, arrow1_results, arrow2_results
 
 
 def _coerce_val_for_dist(v):
-    """Coerce numeric value to a stable distribution key.
-    Ints stay ints; floats are rounded to 2 decimals.
-    """
     try:
-        # If it's numerically very close to an integer, use that integer
         fv = float(v)
         iv = int(round(fv))
         if np.isclose(fv, iv):
@@ -204,7 +193,6 @@ def _coerce_val_for_dist(v):
 
 
 def _compute_stats(values):
-    """Compute avg, min, max, count, distribution for a numeric series."""
     vals = [v for v in values if v is not None]
     if not vals:
         return {
@@ -221,7 +209,6 @@ def _compute_stats(values):
     for v in vals:
         k = _coerce_val_for_dist(v)
         dist[k] = dist.get(k, 0) + 1
-    # Sort by key for stable printing
     try:
         dist = dict(sorted(dist.items(), key=lambda kv: kv[0]))
     except Exception:
@@ -235,7 +222,6 @@ def _compute_stats(values):
 
 
 def _print_series_summary(name, stats):
-    """Pretty-print stats for one series to console."""
     print(f"{name}: count={stats['count']}, avg={stats['avg']:.2f}, min={stats['min']:.2f}, max={stats['max']:.2f}")
 
 
@@ -248,11 +234,9 @@ map_difficulty   = [float(combined[i].get('map_difficulty'))   for i in combined
 arrow_understand = [float(combined[i].get('arrow_understanding')) for i in combined]
 map_understand   = [float(combined[i].get('map_understanding'))   for i in combined]
 
-# Boxplots
 plot_difficulty_boxplot(arrow_difficulty, map_difficulty)
 plot_understanding_boxplot(arrow_understand, map_understand)
 
-# TLX bar comparison
 labels = [
     "mental_demand",
     "physical_demand",
@@ -263,7 +247,6 @@ labels = [
 ]
 plot_tlx_comparison(combined, labels)
 
-# Summary bars
 plot_summary_understanding_difficulty(
     arrow_understand,
     map_understand,
@@ -271,7 +254,6 @@ plot_summary_understanding_difficulty(
     map_difficulty,
 )
 
-# Task results boxplots
 def _num_list(field):
     vals = []
     for k in combined:
@@ -284,7 +266,6 @@ def _num_list(field):
         try:
             vals.append(float(v))
         except ValueError:
-            # Skip non-numeric
             continue
     return vals
 
@@ -294,7 +275,6 @@ arrow1_results = _num_list('arrow1_result')
 arrow2_results = _num_list('arrow2_result')
 plot_task_results(map1_results, map2_results, arrow1_results, arrow2_results)
 
-# Console summary: avg, min, max, distribution for all metrics
 print("\n=== Console Summary ===")
 
 print("\n-- Understanding --")
