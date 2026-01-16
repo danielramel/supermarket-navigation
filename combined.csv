@@ -1,4 +1,4 @@
-name,map_understanding,map_difficulty,arrow_understanding,arrow_difficulty,map_mental_demand,map_physical_demand,map_temporal_demand,map_performance,map_effort,map_frustration,arrow_mental_demand,arrow_physical_demand,arrow_temporal_demand,arrow_performance,arrow_effort,arrow_frustration,map2_result,map1_result,arrow2_result,arrow1_result
+name,map_understanding,arrow_difficulty,arrow_understanding,map_difficulty,map_mental_demand,map_physical_demand,map_temporal_demand,map_performance,map_effort,map_frustration,arrow_mental_demand,arrow_physical_demand,arrow_temporal_demand,arrow_performance,arrow_effort,arrow_frustration,map2_result,map1_result,arrow2_result,arrow1_result
 1,10,8,5,4,7,7,6,2,3,1,8,9,6,4,2,6,114,,,173,
 2,10,10,8,8,3,3,3,9,3,2,3,2,5,1,2,2,,115,154,,
 3,9,8,4,3,6,2,4,7,5,3,9,2,7,3,8,8,152,,,185,
